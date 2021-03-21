@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import starwars from "../../img/starwars.png";
+
+import { Context } from "../store/appContext";
+
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+	const handleDelete = index => {
+		// alert("quiero eliminar" + index);
+		actions.deleteFavorite(index);
+	};
 	return (
 		<div className="container">
 			<nav className="navbar navbar-light bg-light mb-3">
@@ -19,20 +27,38 @@ export const Navbar = () => {
 							data-toggle="dropdown"
 							aria-haspopup="true"
 							aria-expanded="false">
-							Favorites <span className="badge badge-light">4</span>
+							Favorites <span className="badge badge-light">{store.favorites.length}</span>
 						</button>
 						<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							{/* <Link to="/demo"> */}
+							{store.favorites.length !== 0 ? (
+								store.favorites.map((item, index) => {
+									return (
+										<a key={index} className="dropdown-item">
+											{item}{" "}
+											<i
+												onClick={e => {
+													handleDelete(index);
+												}}
+												className="fas fa-trash float-right"
+											/>
+										</a>
+									);
+								})
+							) : (
+								<p className="text-center">empty</p>
+							)}
+
+							{/* <Link to="/demo">
 							<a className="dropdown-item">
-								Action <i className="fas fa-trash" />
+								Action <i className="fas fa-trash float-right" />
 							</a>
-							{/* </Link> */}
+							</Link>
 							<a className="dropdown-item">
-								Another action <i className="fas fa-trash" />
+								Another action <i className="fas fa-trash float-right" />
 							</a>
 							<a className="dropdown-item">
 								Something else here <i className="fas fa-trash float-right" />
-							</a>
+							</a> */}
 						</div>
 					</div>
 				</div>

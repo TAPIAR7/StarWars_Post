@@ -31,9 +31,12 @@ const injectContext = PassedComponent => {
 			 * state.actions.loadSomeData(); <---- calling this function from the flux.js actions
 			 *
 			 **/
-			let URL1 = "https://www.swapi.tech/api/people";
+			// let URL1 = "https://www.swapi.tech/api/people";
+			// let URL2 = "https://www.swapi.tech/api/planets";
+			let URL1 = "https://swapi.dev/api/people/";
+			let URL2 = "https://swapi.dev/api/planets/";
 			let OBJ1 = "people";
-			let URL2 = "https://www.swapi.tech/api/planets";
+
 			let OBJ2 = "planets";
 			state.actions.loadSomeData(URL1, OBJ1);
 			state.actions.loadSomeData(URL2, OBJ2);

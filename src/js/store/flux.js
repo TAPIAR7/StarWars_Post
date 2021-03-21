@@ -35,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					__v: 0
 				}
 			],
-			5: [
+			planets: [
 				{
 					properties: {
 						diameter: "10465",
@@ -56,7 +56,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					uid: "1",
 					__v: 0
 				}
-			]
+			],
+			favorites: []
 		},
 
 		actions: {
@@ -99,6 +100,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			addFavorite: favorite => {
+				// Condition to prevent add a duplicated favorite
+				var isInArray = getStore().favorites.includes(favorite);
+				if (!isInArray) {
+					setStore({ favorites: getStore().favorites.concat(favorite) });
+				}
+			},
+			deleteFavorite: index => {
+				const newArrayFavorites = getStore().favorites.filter((item, indexOld) => {
+					// Returned all elements except the item we want to delete.
+					return index !== indexOld;
+				});
+				setStore({ favorites: newArrayFavorites });
 			}
 		}
 	};
