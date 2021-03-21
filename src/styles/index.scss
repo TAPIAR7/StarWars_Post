@@ -1,3 +1,27 @@
 /* 
     General Styles
 */
+
+.sizeImage{
+    width: 200px;
+}
+.cardSize {
+    width: 300px;
+}
+
+.horizontal-scroll-wrapper {
+ display: flex;
+ flex-wrap: nowrap;
+ overflow-x: auto;
+
+ .card{
+     flex: 0 0 auto;
+ }
+}
+
+.dropdown-menu{
+    right: 0%;
+    top: 100%;
+    left: auto;
+    min-width: 20rem;
+}
