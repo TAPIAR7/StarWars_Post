@@ -8,6 +8,70 @@ import "../../styles/index.scss";
 export const Fullview = () => {
 	const { store, actions } = useContext(Context);
 	console.log(store.learnmore);
+
+	const planetOrPeople = () => {
+		if (store.learnmore[1] === "people") {
+			return (
+				<div className="row border-top border-warning">
+					<div className="col mt-4 text-center text-danger">
+						<h5>Name</h5>
+						<p>{store.learnmore[0].name}</p>
+					</div>
+					<div className="col mt-4 text-center text-danger">
+						<h5>Birth Year</h5>
+						<p>{store.learnmore[0].birth_year}</p>
+					</div>
+					<div className="col mt-4 text-center text-danger">
+						<h5>Gender</h5>
+						<p>{store.learnmore[0].gender}</p>
+					</div>
+					<div className="col mt-4 text-center text-danger">
+						<h5>Height</h5>
+						<p>{store.learnmore[0].height}</p>
+					</div>
+					<div className="col mt-4 text-center text-danger">
+						<h5>Skin Color</h5>
+						<p>{store.learnmore[0].skin_color}</p>
+					</div>
+					<div className="col mt-4 text-center text-danger">
+						<h5>Eye Color</h5>
+						<p>{store.learnmore[0].eye_color}</p>
+					</div>
+				</div>
+			);
+		} else if (store.learnmore[1] === "planets") {
+			return (
+				<div className="row border-top border-warning">
+					<div className="col mt-4 text-center text-danger">
+						<h5>Name</h5>
+						<p>{store.learnmore[0].name}</p>
+					</div>
+					<div className="col mt-4 text-center text-danger">
+						<h5>Climate</h5>
+						<p>{store.learnmore[0].climate}</p>
+					</div>
+					<div className="col mt-4 text-center text-danger">
+						<h5>Population</h5>
+						<p>{store.learnmore[0].population}</p>
+					</div>
+					<div className="col mt-4 text-center text-danger">
+						<h5>Orbital Period</h5>
+						<p>{store.learnmore[0].orbital_period}</p>
+					</div>
+					<div className="col mt-4 text-center text-danger">
+						<h5>Rotation Period</h5>
+						<p>{store.learnmore[0].rotation_period}</p>
+					</div>
+					<div className="col mt-4 text-center text-danger">
+						<h5>Diameter</h5>
+						<p>{store.learnmore[0].diameter}</p>
+					</div>
+				</div>
+			);
+		} else {
+			return <span className="display-3 text-danger">Return to home page and select one item...</span>;
+		}
+	};
 	return (
 		<div className="container">
 			<div className="row">
@@ -30,32 +94,7 @@ export const Fullview = () => {
 					</p>
 				</div>
 			</div>
-			<div className="row border-top border-warning">
-				<div className="col text-center text-danger">
-					<h5>Name</h5>
-					<p>Name</p>
-				</div>
-				<div className="col text-center text-danger">
-					<h5>Birth Year</h5>
-					<p>Birth</p>
-				</div>
-				<div className="col text-center text-danger">
-					<h5>Gender</h5>
-					<p>Gender</p>
-				</div>
-				<div className="col text-center text-danger">
-					<h5>Height</h5>
-					<p>Gender</p>
-				</div>
-				<div className="col text-center text-danger">
-					<h5>Skin Color</h5>
-					<p>Gender</p>
-				</div>
-				<div className="col text-center text-danger">
-					<h5>Eye Color</h5>
-					<p>Gender</p>
-				</div>
-			</div>
+			{planetOrPeople()}
 			<br />
 			<Link to="/">
 				<button className="btn btn-primary">Back home</button>

@@ -126,13 +126,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			showFullviewPeople: index => {
 				const viewSelected = getStore().people[index];
-				setStore({ learnmore: [viewSelected] });
+				setStore({ learnmore: [viewSelected, "people"] });
 			},
 			showFullviewPlanets: index => {
 				console.log(index);
 				const viewSelected = getStore().planets[index];
 				console.log(viewSelected);
-				setStore({ learnmore: [viewSelected] });
+				setStore({ learnmore: [viewSelected, "planets"] });
 				console.log(getStore().learnmore);
 			}
 		}
