@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
+import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import { Context } from "../store/appContext";
 import CardPeople from "../component/people";
@@ -55,6 +56,13 @@ export const Home = () => {
 
 	return (
 		<div className="container">
+			{/* <p>Test</p>
+			<Link to="/fullview">
+				<button type="button" className="btn btn-primary">
+					Primary
+				</button>
+			</Link> */}
+
 			<h1 className="text-danger">Characters</h1>
 			{/* <div className="row horizontal-scroll-wrapper">{characterCards()}</div> */}
 			<div className="row horizontal-scroll-wrapper">

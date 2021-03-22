@@ -57,7 +57,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					__v: 0
 				}
 			],
-			favorites: []
+			favorites: [],
+			learnmore: []
 		},
 
 		actions: {
@@ -114,6 +115,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return index !== indexOld;
 				});
 				setStore({ favorites: newArrayFavorites });
+			},
+			changeHeart: favorite => {
+				var isInArray = getStore().favorites.includes(favorite);
+				if (isInArray) {
+					return "fas fa-heart";
+				} else {
+					return "far fa-heart";
+				}
+			},
+			showFullviewPeople: index => {
+				const viewSelected = getStore().people[index];
+				setStore({ learnmore: [viewSelected] });
+			},
+			showFullviewPlanets: index => {
+				console.log(index);
+				const viewSelected = getStore().planets[index];
+				console.log(viewSelected);
+				setStore({ learnmore: [viewSelected] });
+				console.log(getStore().learnmore);
 			}
 		}
 	};

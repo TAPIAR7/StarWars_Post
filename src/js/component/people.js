@@ -3,9 +3,18 @@ import PropTypes from "prop-types";
 import starwars from "../../img/starwars.png";
 import "../../styles/home.scss";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 const CardPeople = () => {
 	const { store, actions } = useContext(Context);
+	// const changeHeart = favorite => {
+	// 	var isInArray = store.favorites.includes(favorite);
+	// 	if (isInArray) {
+	// 		return <i className="fas fa-heart" />;
+	// 	} else {
+	// 		return <i className="far fa-heart" />;
+	// 	}
+	// };
 	return store.people !== undefined
 		? store.people.map((item, index) => {
 				return (
@@ -17,16 +26,24 @@ const CardPeople = () => {
 								<p className="card-text">Gender: {item.gender}</p>
 								<p className="card-text">Hair Color: {item.hairColor}</p>
 								<p className="card-text">Eyes Color: {item.eyeColor}</p>
-								<button type="button" className="btn btn-primary">
-									Learn More
-								</button>
+								<Link to="/fullview">
+									<button
+										onClick={() => {
+											actions.showFullviewPeople(index);
+										}}
+										type="button"
+										className="btn btn-primary">
+										Learn More
+									</button>
+								</Link>
 								<button
 									onClick={() => {
 										actions.addFavorite(item.name);
 									}}
 									type="button"
 									className="btn btn-outline-warning float-right">
-									<i className="far fa-heart" />
+									{/* <i className="far fa-heart" /> */}
+									<i className={actions.changeHeart(item.name)} />
 								</button>
 							</div>
 						</div>

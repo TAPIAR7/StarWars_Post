@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import starwars from "../../img/starwars.png";
 import "../../styles/home.scss";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 const CardPlanets = () => {
 	const { store, actions } = useContext(Context);
@@ -17,16 +18,25 @@ const CardPlanets = () => {
 								<h5 className="card-title">{item.name}</h5>
 								<p className="card-text">Terrain: {item.terrain}</p>
 								<p className="card-text">Population: {item.population}</p>
-								<button type="button" className="btn btn-primary">
-									Learn More
-								</button>
+								<Link to="/fullview">
+									<button
+										onClick={() => {
+											actions.showFullviewPlanets(index);
+										}}
+										type="button"
+										className="btn btn-primary">
+										Learn More
+									</button>
+								</Link>
+
 								<button
 									onClick={() => {
 										actions.addFavorite(item.name);
 									}}
 									type="button"
 									className="btn btn-outline-warning float-right">
-									<i className="far fa-heart" />
+									{/* <i className="far fa-heart" /> */}
+									<i className={actions.changeHeart(item.name)} />
 								</button>
 							</div>
 						</div>
