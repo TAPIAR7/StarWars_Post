@@ -8,10 +8,10 @@ import CardPlanets from "../component/planets";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
-	console.log(store);
-	let characters = store.people;
-	let planets = store.planets;
-	console.log(characters);
+	// console.log(store);
+	// let characters = store.people;
+	// let planets = store.planets;
+	// console.log(characters);
 
 	// const addFavorite = newFavorite => {
 	// 	if (store.favorites.length > 0) {

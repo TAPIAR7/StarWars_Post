@@ -129,11 +129,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ learnmore: [viewSelected, "people"] });
 			},
 			showFullviewPlanets: index => {
-				console.log(index);
+				// console.log(index);
 				const viewSelected = getStore().planets[index];
-				console.log(viewSelected);
+				// console.log(viewSelected);
 				setStore({ learnmore: [viewSelected, "planets"] });
-				console.log(getStore().learnmore);
+				// console.log(getStore().learnmore);
+			},
+			findPeople: name => {
+				let myPeople = [];
+				for (let index = 0; index < getStore().people.length; index++) {
+					if (getStore().people[index].name === name) {
+						// console.log(getStore().people[index]);
+						myPeople = [getStore().people[index], "people"];
+					}
+				}
+				return myPeople;
+			},
+			findPlanets: name => {
+				let myPlanets = [];
+				for (let index = 0; index < getStore().planets.length; index++) {
+					if (getStore().planets[index].name === name) {
+						// console.log(getStore().planets[index]);
+						myPlanets = [getStore().planets[index], "planets"];
+					}
+				}
+				return myPlanets;
+			},
+			showFullview: name => {
+				let testPeople = getActions().findPeople(name).length;
+				let testPlanets = getActions().findPlanets(name).length;
+				let people = getActions().findPeople(name);
+				let planets = getActions().findPlanets(name);
+				// console.log(people);
+				// console.log(planets);
+				if (testPeople !== 0) {
+					setStore({ learnmore: people });
+					// console.log(getStore().learnmore);
+				} else {
+					setStore({ learnmore: planets });
+					// console.log(getStore().learnmore);
+				}
+				// console.log(testPeople, testPlanets);
 			}
 		}
 	};

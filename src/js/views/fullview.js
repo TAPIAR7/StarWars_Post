@@ -7,7 +7,7 @@ import "../../styles/index.scss";
 
 export const Fullview = () => {
 	const { store, actions } = useContext(Context);
-	console.log(store.learnmore);
+	// console.log(store.learnmore);
 
 	const planetOrPeople = () => {
 		if (store.learnmore[1] === "people") {

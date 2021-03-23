@@ -10,6 +10,15 @@ export const Navbar = () => {
 		// alert("quiero eliminar" + index);
 		actions.deleteFavorite(index);
 	};
+	// const findPeople = name => {
+	// console.log(name);
+	// let myPeople = {};
+	// for (let index = 0; index < store.people.length; index++) {
+	// 	if (store.people[index].name === name) {
+	// 		myPeople = store.people[index];
+	// 	}
+	// }
+	// };
 	return (
 		<div className="container">
 			<nav className="navbar navbar-light bg-light mb-3">
@@ -34,7 +43,15 @@ export const Navbar = () => {
 								store.favorites.map((item, index) => {
 									return (
 										<a key={index} className="dropdown-item">
-											{item}{" "}
+											<Link to="/fullview">
+												<span
+													onClick={() => {
+														actions.showFullview(item);
+													}}>
+													{item}
+												</span>
+											</Link>
+
 											<i
 												onClick={e => {
 													handleDelete(index);
