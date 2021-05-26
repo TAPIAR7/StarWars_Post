@@ -170,6 +170,73 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// console.log(getStore().learnmore);
 				}
 				// console.log(testPeople, testPlanets);
+			},
+			getFavbyID: position => {
+				setStore({ productsByID: [] });
+				// fetching data from the backend
+				fetch(process.env.BACKEND_URL + "/api/user/" + position + "/carlist")
+					.then(response => response.json())
+					.then(result => {
+						console.log(result);
+						getActions().saveInSessionArray("carrito", result);
+						let carritoJSON = result;
+						console.log("Lo que cargue de carrito", carritoJSON);
+						if (carritoJSON != null)
+							return carritoJSON.map((item, index) => {
+								setStore({ productsByID: getStore().productsByID.concat(item) });
+								getActions().getProductbyID(item.product_id);
+								console.log("Esto es lo que tengo", item);
+								console.log("Mi product id", item.product_id);
+							});
+					})
+					.catch(error => console.log("Error loading list.", error));
+			},
+			// Este metodo lo que hace es agregar a la base de datos el producto al carrito por usuario
+			posFavbyID: (newData, position) => {
+				// var myHeaders = new Headers();
+				// myHeaders.append("Content-Type", "application/json");
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify(newData);
+
+				var requestOptions = {
+					method: "POST",
+					headers: myHeaders,
+					body: raw
+				};
+
+				fetch(process.env.BACKEND_URL + "/user/" + position + "/favorites", requestOptions)
+					.then(response => {
+						console.log(response.json());
+						if (response.ok) {
+							// setStore({ loginResponse: "Item added!" });
+							// return response.json();
+						} else {
+							// setStore({ loginResponse: "It was not possible to add the item." });
+							// return response.json();
+						}
+					})
+					// .then(result => console.log(result))
+					.then(result => {
+						console.log("Item added!", result);
+					})
+					.catch(error => console.log("Error saving item.", error));
+			},
+			deleteFavbyID: position => {
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+				var requestOptions = {
+					method: "DELETE",
+					headers: myHeaders
+				};
+				// fetching data from the backend
+				fetch(process.env.BACKEND_URL + "/api/carlist/" + position, requestOptions)
+					.then(resp => resp.json())
+					.then(result => {
+						console.log(result);
+					})
+					.catch(error => console.log("Error trying to delete from the list.", error));
 			}
 		}
 	};
